@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+    
+{% block content %}
+      
+        <div class="album py-5 bg-light">
+          <div class="container">
+            <div class="row">
+              {%for pick in picks.all %}
+                <!--1-->
+          
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                      <br>
+                        <div class="s" >
+                        <div class="the">
+                            <img src="{{pick.image.url}}" height="100%" width="100%">
+                        </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="text">
+                        <h4>{{pick.title}}</h4>
+                        <p>{{pick.description}}</p>
+                        <button type="button" class="btn btn-outline-secondary">자세히 보러가기</button>
+                       </div>
+                       <br>
+                       
+                    </div>
+                </div>
+                
+            {%endfor%}
+
+            </div>
+          </div>
+        </div>
+
+</body>
+{% endblock %}

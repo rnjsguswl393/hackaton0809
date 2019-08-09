@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+    <form class="container" action="">
+        <!-- 유튜브 채널명 -->
+        <div class="form-group">
+            <label for="channelname" class="label1">유튜브 채널 이름</label>
+            <input type="text" name="channelname" class="form-control" placeholder="유튜브 채널 이름">
+        </div>
+
+        <!-- 방송 분야 -->
+        <div class="form-group">
+            <label for="channelarea" class="label1">방송 분야</label>
+            <input type="text" name="channelarea" class="form-control" placeholder="방송 분야">
+        </div>
+        
+        <!-- 채용 직책 -->
+        <div class="form-group">
+            <label for="hireposition" class="label1">채용 직책</label>
+            <select class="form-control" name="hireposition">
+                <option>편집자</option>
+                <option>매니저</option>
+                <option>카메라맨</option>
+            </select>
+        </div>
+
+        <!-- 월급 -->
+        <div class="form-group">
+            <label for="pay" class="label1">월급</label>
+            <input type="text" name="pay" class="form-control" placeholder="최소금액~최대금액">
+        </div>
+
+        <!-- 자격 요건 -->
+        <div class="form-group">
+            <label for="requirement" class="label1">자격 요건</label>
+            <input type="text" name="requirement" class="form-control" placeholder="자격 요건(경력, 면허 등)">
+        </div>
+
+        <!-- 계약 기간 -->
+        <div class="form-group">
+            <label for="contractperiod" class="label1">계약 기간</label>
+            <input type="text" name="contractperiod" class="form-control" placeholder="계약 기간">
+        </div>
+
+        <!-- 이메일 주소 -->
+        <div class="form-group">
+            <label for="email" class="label1">이메일 주소</label>
+            <input type="email" name="email" class="form-control" placeholder="이메일 주소">
+        </div>
+
+        <!-- 추가 사항 -->
+        <div class="form-group">
+            <label for="etc" class="label1">추가 사항</label>
+            <textarea name="etc" class="form-control" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-outline-danger">제출</button>
+    </form>
+</body>
+{% endblock %}

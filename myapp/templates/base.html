@@ -1,0 +1,188 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image⁄x-icon" href="https://lh3.googleusercontent.com/k_HSvNKlleJNrzuL3OqDuXFm3Es8d77UQtiZvPqLg8lera9Xj99GRkDwWaJGMz8nkb1B">
+  
+    <title>Youtube_Jobs</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <script src="https://use.fontawesome.com/releases/v5.10.1/js/all.js"></script>
+
+    <style>
+        div.form-inline{
+            margin-right: 200px;
+            font-size: 30px;
+        }
+
+        iframe {
+            width: 650px;
+            height: 330px;
+            border: 1px solid gray;
+            border-radius: 10px;
+        }
+
+        a.navbar-brand{
+            margin-left: 200px;
+            font-size: 40px;
+        }
+
+        ul.navbar-nav{
+            margin-left: 200px;
+            font-size: 25px;
+        }
+
+        li.nav-item{
+            margin-right: 30px;
+        }
+
+        form.form-inline{
+            margin-right: 120px;
+        }
+
+        label.label1{
+            font-size: 25px;
+        }
+
+        div.floating{
+            border: 3px double gray;
+            padding: 5px;
+            width: 300px;
+            z-index: 100;
+            position: fixed;
+            top: 300px;
+            right: 70px;
+        }
+
+        div.col-lg-4{
+            margin-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 네브바 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static '2.png' %}" width="300" height="100"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'pick' %}">채용 공고</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">공고 올리기</a>
+                </li>
+                {% endif %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </li>
+        
+            <form action="{% url 'search'%}" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="검색어를 입력하세요." aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="form-inline my-2 my-lg-0">
+            
+            {% if user.is_authenticated %}
+            <p class="accountTag accountLeft">{{user.username}}님 환영합니다</p>
+            <button type="button" class="btn btn-danger" onclick = "location.href = '{% url 'logout' %}'">Logout</button>
+            {% else %}
+            <button type="button" class="btn btn-danger" onclick = "location.href = '{% url 'signup' %}' ">SignUp</button>
+            &nbsp;&nbsp;
+            <button type="button" class="btn btn-danger" onclick = "location.href = '{% url 'login' %}' ">Login</button>
+            {% endif %}
+        </div>
+
+    </ul>
+    </nav> 
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+    <!-- Footer -->
+    <br>
+    <footer class="py-4 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        </div>
+    </footer>
+
+    <div class="floating"> 
+    <br>
+     <h5 class="floatingname" align="center">최근 본 공고</h5>
+        <br>
+        <div class="card mb-3" style="max-width: 280px; height: 80px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="https://t1.daumcdn.net/cfile/tistory/998F52385B1DBE3103" height=70px; width= 150px; class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h6 class="font-weight-bold">제이플라</h6>
+                        <p class="card-text">음악 크리에이터</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="card mb-3" style="max-width: 280px; height: 80px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMCMx89vzZ50nD5eC6KSz16LY_GN2Cckg3NzyvMkOlhvpVb6N4" height=70px; width= 150px; class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h6 class="font-weight-bold">슬기</h6>
+                        <p class="card-text">일상 크리에이터</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        <div class="card mb-3" style="max-width: 280px; height: 80px;">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="https://yt3.ggpht.com/a/AGF-l79m15KoYnl91QNmbgCrvFkCY9kT3U9zP1ZaCA=s240-mo-c-c0xffffffff-rj-k-no" height=70px; width= 150px; class="card-img" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h6 class="font-weight-bold">밴쯔</h6>
+                        <p class="card-text">먹방 크리에이터</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
